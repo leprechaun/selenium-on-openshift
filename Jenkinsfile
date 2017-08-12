@@ -68,5 +68,16 @@ pipeline {
         sh "oc apply -f oc-manifests/run-time/"
       }
     }
+
+    stage("Deploy: Testing ENV") {
+      steps {
+        script {
+          openshiftDeploy(
+            depCfg: 'selenium-os'
+          )
+        }
+      }
+    }
+
   }
 }
