@@ -10,6 +10,6 @@ spec:
       port: 4444
       targetPort: 4444
   selector:
-    name: selenium-os
+    name: selenium
   type: ClusterIP
   sessionAffinity: None
