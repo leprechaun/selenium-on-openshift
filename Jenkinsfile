@@ -73,7 +73,7 @@ pipeline {
       steps {
         script {
           openshiftDeploy(
-            depCfg: 'selenium-os'
+            depCfg: 'selenium'
           )
         }
       }
