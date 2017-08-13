@@ -17,12 +17,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+import os
+
 def check_browser(browser):
   driver = webdriver.Remote(
-    command_executor='http://selenium-hub.192.168.99.100.nip.io/wd/hub',
+    command_executor='http://' + os.environ("SELENIUM_HUB_HOST") + '/wd/hub',
     desired_capabilities=getattr(DesiredCapabilities, browser)
   )
-  print("ASDASD")
   driver.get("http://google.com")
   assert "google" in driver.page_source
   driver.close()
