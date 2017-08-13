@@ -30,4 +30,4 @@ def check_browser(browser):
   print("Browser %s checks out!" % browser)
 
 
-check_browser("chrome")
+check_browser("CHROME")
