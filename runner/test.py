@@ -28,7 +28,7 @@ def check_browser(browser):
   print("got driver")
   driver.get("http://google.com")
   print("got google")
-  assert "baidu" in driver.page_source
+  assert "google" in driver.page_source
   driver.close()
   print("Browser %s checks out!" % browser)
 
