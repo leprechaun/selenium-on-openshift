@@ -104,7 +104,7 @@ pipeline {
         sh "oc create -f oc-manifests/test-time/"
         sh "sleep 5"
         sh "oc logs -f selenium-runner"
-        sh "[ \"\$(oc get pods | selenium-runner | awk '{ print \$3 }')\" == \"Complete\" ] || exit 1"
+        sh "[ \"\$(oc get pods selenium-runner | awk '{ print \$3 }')\" == \"Complete\" ] || exit 1"
         sh "oc delete -f oc-manifests/test-time/"
       }
     }
