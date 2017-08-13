@@ -11,7 +11,7 @@ spec:
     type: Docker
     dockerStrategy:
       noCache: true
-      dockerfilePath: hub/
+      dockerfilePath: hub/Dockerfile
   output:
     to:
       kind: "ImageStreamTag"

@@ -11,7 +11,7 @@ spec:
     type: Docker
     dockerStrategy:
       noCache: true
-      dockerfilePath: chrome/
+      dockerfilePath: chrome/Dockerfile
   output:
     to:
       kind: "ImageStreamTag"
