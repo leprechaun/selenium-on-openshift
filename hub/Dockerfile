@@ -1,4 +1,4 @@
-FROM selenium/hub:3.4
+FROM selenium/hub:3.3
 
 USER root
 

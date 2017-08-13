@@ -1,4 +1,4 @@
-FROM selenium/node-chrome:3.4
+FROM selenium/node-chrome:3.3
 
 USER root
 
