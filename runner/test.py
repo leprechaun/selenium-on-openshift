@@ -21,7 +21,7 @@ import os
 
 def check_browser(browser):
   driver = webdriver.Remote(
-    command_executor='http://' + os.environ("SELENIUM_HUB_HOST") + '/wd/hub',
+    command_executor='http://' + os.environ["SELENIUM_HUB_HOST"] + '/wd/hub',
     desired_capabilities=getattr(DesiredCapabilities, browser)
   )
   driver.get("http://google.com")
