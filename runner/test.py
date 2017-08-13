@@ -22,7 +22,7 @@ import os
 def check_browser(browser):
   driver = webdriver.Remote(
     command_executor='http://' + os.environ["SELENIUM_HUB_HOST"] + '/wd/hub',
-    desired_capabilities=getattr(DesiredCapabilities, browser)
+    desired_capabilities={"browser_name": "chrome"}
   )
   driver.get("http://google.com")
   assert "google" in driver.page_source
