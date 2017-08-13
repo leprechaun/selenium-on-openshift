@@ -7,6 +7,6 @@ RUN chmod 755 /usr/local/bin/make-writable
 
 RUN make-writable /opt/selenium/config.json || true
 RUN make-writable /opt/selenium/
-RUN mkdir /.pki/nssdb && make-writable /.pki/nssdb
+RUN mkdir -p /.pki/nssdb && make-writable /.pki/nssdb
 
 USER seluser
