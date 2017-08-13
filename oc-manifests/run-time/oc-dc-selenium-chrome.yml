@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: selenium-chrome
+  labels:
+    app: selenium-chrome
+    name: selenium-chrome
+spec:
+  strategy:
+    type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+  replicas: 1
+  selector:
+    app: selenium-chrome
+    deploymentconfig: selenium-chrome
+    name: selenium-chrome
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: selenium-chrome
+        deploymentconfig: selenium-chrome
+        name: selenium-chrome
+    spec:
+      containers:
+        - name: selenium-chrome
+          image: >-
+            172.30.1.1:5000/test-project/selenium-chrome:latest
+          ports:
+            - containerPort: 4444
+              protocol: TCP
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
