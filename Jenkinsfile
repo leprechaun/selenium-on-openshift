@@ -95,7 +95,7 @@ pipeline {
       steps {
         script {
           openshiftDeploy(
-            depCfg: 'selenium'
+            depCfg: 'selenium-hub'
           )
         }
       }
