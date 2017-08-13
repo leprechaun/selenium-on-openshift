@@ -9,7 +9,7 @@ spec:
       uri: "https://github.com/leprechaun/selenium-on-openshift"
   strategy:
     type: Docker
-    dockerStragegy:
+    dockerStrategy:
       noCache: true
       dockerfilePath: chrome/
   output:
