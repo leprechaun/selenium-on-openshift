@@ -100,7 +100,7 @@ pipeline {
     stage("Run a Selenium test") {
       steps {
         sh "sleep 30 # let the selenium deploy become ready ..."
-        sh "oc delete -f oc-manifests/test-time/"
+        sh "oc delete -f oc-manifests/test-time/ || true"
         sh "oc create -f oc-manifests/test-time/"
         sh "sleep 5"
         sh "oc logs -f selenium-runner"
