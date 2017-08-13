@@ -20,11 +20,14 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import os
 
 def check_browser(browser):
+  print("get driver for " + os.environ["SELENIUM_HUB_HOST"])
   driver = webdriver.Remote(
     command_executor='http://' + os.environ["SELENIUM_HUB_HOST"] + '/wd/hub',
     desired_capabilities={"browserName": "chrome"}
   )
+  print("got driver")
   driver.get("http://google.com")
+  print("got google")
   assert "google" in driver.page_source
   driver.close()
   print("Browser %s checks out!" % browser)
