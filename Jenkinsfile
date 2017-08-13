@@ -111,11 +111,31 @@ pipeline {
 
     stage("Deploy: Testing ENV") {
       steps {
-        script {
-          openshiftDeploy(
-            depCfg: 'selenium-hub'
-          )
-        }
+        parallel (
+          "selenium-hub": {
+            script {
+              openshiftDeploy(
+                depCfg: 'selenium-hub'
+              )
+            }
+          },
+          "selenium-chrome": {
+            script {
+              openshiftDeploy(
+                depCfg: 'selenium-chrome'
+              )
+            }
+          }
+        )
+      }
+    }
+
+    stage("Run a Selenium test") {
+      steps {
+        sh "oc create -f oc-manifests/test-time/"
+        sh "sleep 5"
+        sh "oc logs -f selenium-runner"
+        sh "oc delete -f oc-manifests/test-time/"
       }
     }
 
