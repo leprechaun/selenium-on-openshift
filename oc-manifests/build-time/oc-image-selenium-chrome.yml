@@ -1,0 +1,17 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "selenium-chrome"
+spec:
+  source:
+    type: Git
+    git:
+      uri: "https://github.com/leprechaun/selenium-on-openshift"
+  strategy:
+    type: Docker
+    dockerStragegy:
+      noCache: true
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "selenium-chrome:latest"

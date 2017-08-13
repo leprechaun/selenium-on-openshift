@@ -44,22 +44,44 @@ pipeline {
 
     stage("Build Images") {
       steps {
-        script {
-          def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-          def shortCommit = gitCommit.take(8)
-          openshiftBuild(
-            bldCfg: 'selenium-os',
-            showBuildLogs: 'true',
-            commit: shortCommit
-          )
+        parallel (
+          "hub": {
+            script {
+              def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+              def shortCommit = gitCommit.take(8)
+              openshiftBuild(
+                bldCfg: 'selenium-hub',
+                showBuildLogs: 'true',
+                commit: shortCommit
+              )
 
-          openshiftTag(
-            sourceStream: 'selenium-os',
-            sourceTag: 'latest',
-            destinationStream: 'selenium-os',
-            destinationTag: shortCommit
-          )
-        }
+              openshiftTag(
+                sourceStream: 'selenium-hub',
+                sourceTag: 'latest',
+                destinationStream: 'selenium-hub',
+                destinationTag: shortCommit
+              )
+            }
+          },
+          "chrome": {
+            script {
+              def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+              def shortCommit = gitCommit.take(8)
+              openshiftBuild(
+                bldCfg: 'selenium-chrome',
+                showBuildLogs: 'true',
+                commit: shortCommit
+              )
+
+              openshiftTag(
+                sourceStream: 'selenium-chrome',
+                sourceTag: 'latest',
+                destinationStream: 'selenium-chrome',
+                destinationTag: shortCommit
+              )
+            }
+          }
+        )
       }
     }
 
