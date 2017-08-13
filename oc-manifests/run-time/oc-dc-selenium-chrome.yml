@@ -34,6 +34,13 @@ spec:
           ports:
             - containerPort: 4444
               protocol: TCP
+          ports:
+            - containerPort: 5900
+          env:
+            - name: HUB_PORT_4444_TCP_ADDR
+              value: "selenium-hub"
+            - name: HUB_PORT_4444_TCP_PORT
+              value: "4444"
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
