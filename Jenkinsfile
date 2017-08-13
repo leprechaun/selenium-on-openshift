@@ -80,6 +80,24 @@ pipeline {
                 destinationTag: shortCommit
               )
             }
+          },
+          "runner": {
+            script {
+              def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+              def shortCommit = gitCommit.take(8)
+              openshiftBuild(
+                bldCfg: 'selenium-runner',
+                showBuildLogs: 'true',
+                commit: shortCommit
+              )
+
+              openshiftTag(
+                sourceStream: 'selenium-runner',
+                sourceTag: 'latest',
+                destinationStream: 'selenium-runner',
+                destinationTag: shortCommit
+              )
+            }
           }
         )
       }
