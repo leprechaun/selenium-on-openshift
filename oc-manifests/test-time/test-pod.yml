@@ -5,10 +5,10 @@ metadata:
   labels:
     app: selenium-runner
     name: selenium-runner
-  namespace: my-project
+  namespace: myproject
 spec:
   containers:
-    - image: 172.30.1.1:5000/my-project/selenium-runner:latest
+    - image: 172.30.1.1:5000/myproject/selenium-runner:latest
       imagePullPolicy: Always
       name: selenium-runner
       resources: {}
